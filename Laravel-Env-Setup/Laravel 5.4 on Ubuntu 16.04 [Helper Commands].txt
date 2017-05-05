@@ -210,11 +210,28 @@ sudo a2dissite 000-default
 sudo a2ensite 000-default
 
 #########################################################################################################################################
+**Laravel Related Commands
 
+//Create Controller
+ php artisan make:controller SongsController --resource
+ 
+ //Show Route List
+ php artisan route:list
+ 
+ //Create table
+ php artisan make:migration my_songs_table --create=songs;
+ 
+ //Migrate a table
+ php artisan migrate
 
+//Run tinker to store data in mysql database
+ php artisan tinker
+ 
+ //Command to insert Data
+ DB::table('songs')->insert(['title'=>'Channa Mereya','artist'=>'Arijit Singh','created_at'=>new DateTime,'updated_at'=>new DateTime]);
 
-
-
+ //Make a model
+ php artisan make:model song;
 
 
 
