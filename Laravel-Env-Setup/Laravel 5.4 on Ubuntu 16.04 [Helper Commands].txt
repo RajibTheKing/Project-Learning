@@ -1,0 +1,283 @@
+
+/**
+ *
+ * @author Rajib Chandra Das
+ * @date 4th May, 2017
+ * @content Laravel Environment Setup
+ */
+
+**Update system
+------------------------------------------------------------------------
+sudo apt update
+sudo apt upgrade
+
+
+**Basic programs and Packages
+------------------------------------------------------------------------
+sudo apt install git
+sudo apt install unzip
+sudo apt install leafpad
+
+
+**Install Mysql, PHP, Apache
+------------------------------------------------------------------------
+//Apache:
+sudo systemctl stop apache2
+sudo apt install apache2
+sudo systemctl restart apache2
+sudo systemctl status apache2
+
+//Mysql:
+sudo systemctl stop mysql
+sudo apt install mysql-server mysql-client
+sudo systemctl restart mysql
+sudo systemctl status mysql
+
+//PHP:
+sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
+which php; //Check php installation path
+php -v; //Check php Versions
+
+
+**Check Everything works fine or not
+------------------------------------------------------------------------
+
+sudo leafpad /var/www/html/info.php
+
+//Add this lines into that file and save
+
+<code-block>
+
+	<?php
+		phpinfo();
+	?>
+	
+</code-block>
+
+//Now open a browser and hit with http://localhost/info.php
+//You will be able to get a page with all the information about php that is installed into your PC.
+
+
+
+
+**Laravel Initial Environment Setup Starting
+-------------------------------------------------------------------------------
+//Stop running mysql and apache2
+sudo systemctl stop mysql
+sudo systemctl stop apache2
+
+// CURL + Composer
+sudo apt-get install curl php-curl php-mcrypt php-mbstring php-gettext
+
+// enable mods
+sudo phpenmod mcrypt
+sudo phpenmod mbstring
+sudo a2enmod rewrite
+sudo systemctl restart apache2
+curl -sS https://getcomposer.org/installer | php
+sudo cp composer.phar /usr/local/bin/composer
+sudo mv composer.phar composer_original.phar
+
+
+//install phpmyadmin
+sudo apt install phpmyadmin 	
+#later accessible through localhost/phpmyadmin
+
+		
+#If you get a 404 error upon visiting http://localhost/phpmyadmin: You will need to configure apache2.conf 	to work with Phpmyadmin.
+
+sudo gedit /etc/apache2/apache2.conf
+
+# include the following line at the bottom of the file, save and quit.
+
+Include /etc/phpmyadmin/apache.conf
+
+# Then, try to acccess localhost/phpmyadmin again, hopefully you will get phpmyadmin page now
+
+
+		
+**Now Creating a Laravel Project
+-------------------------------------------------------------------------------
+cd /var/www/html/
+
+sudo composer create-project laravel/laravel work --prefer-dist
+#This command will take little bit time, because it will down load every package related Laravel project.
+
+sudo chmod -R 777 work
+
+//Creating Virtual Host work.com
+sudo leafpad /etc/apache2/sites-available/work.com.conf
+
+#/etc/apache2/sites-available/work.com.conf contains following lines
+<VirtualHost *:80>
+		ServerName work.com
+		DocumentRoot /var/www/html/work/public
+
+		<Directory /var/www/html/work/public>
+			AllowOverride All
+			Require all granted
+		</Directory>
+</VirtualHost>
+			
+// enable that site
+sudo a2ensite work.com
+service apache2 reload
+sudo systemctl restart apache2
+
+
+// fix hosts file	
+sudo leafpad /etc/hosts
+#/etc/hosts contents following lines                                
+127.0.0.1       work.com
+
+
+
+// make permanent aliases:
+echo "alias cls='clear'" >> ~/.bash_aliases && source ~/.bash_aliases
+echo "alias sudo='sudo '" >> ~/.bash_aliases && source ~/.bash_aliases
+echo "alias fm='pcmanfm'" >> ~/.bash_aliases && source ~/.bash_aliases
+
+That's it laravel is installed!
+
+
+
+
+#######################################################################################################################################
+
+** Make Sublime more Confortable with adding several Plugins
+---------------------------------------------------------------------------------------------------
+
+// fix for adding repositories so you can download software from other sources
+sudo apt-get install software-properties-common
+
+// install sublime-text 3
+sudo add-apt-repository ppa:webupd8team/sublime-text-3
+sudo apt-get update
+sudo apt-get install sublime-text-installer
+
+// install sublime packages 
+	Ctrl + ` or  View/Show Console
+	
+import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) 
+
+	restart sublime-text
+	then go to Preferences/Package Control and install
+	#Laravel Blade Highlighter 
+	#Sidebar-Enhancements 
+	#LaravelCollective HTML Form Snippets
+	"CodeComplice",
+	"Laravel Helper Completions",
+	"Terminal"
+
+// this is for removing and uninstalling sublime text
+sudo apt-get purge sublime-text-installer
+sudo rm -r /opt/sublime_text
+sudo rm -r /usr/bin/subl
+sudo rm -r /usr/share/applications/sublime.desktop
+sudo rm -r /home/laravel/Desktop/sublime-text.desktop
+sudo rm -r /home/laravel/.config/sublime-text-3
+
+
+
+** Changing Server Directory
+-------------------------------------------------------------------------------
+// change default server directory *OPTIONAL!
+sudo leafpad /etc/apache2/sites-available/000-default.conf
+
+and change the following line to what you want:
+
+DocumentRoot /var/www/html
+
+Also do a
+sudo leafpad /etc/apache2/apache2.conf
+and find this
+
+<Directory /var/www/>
+Options Indexes FollowSymLinks
+AllowOverride None
+Require all granted
+</Directory>
+
+and change /var/www/ to your preferred directory //mine is /var/www/html/work/public
+
+and save it.
+After you saved your changes, just restart the apache2 webserver and you'll be done :)
+sudo service apache2 restart
+
+// make laravel app to be the landing (localhost) site instead of apache2 /*optional
+sudo a2dissite 000-default
+// this is to enable it 
+sudo a2ensite 000-default
+
+#########################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+#########################################################################################################################################
+** Several Advanced Changes Inside Laravel Project
+---------------------------------------------------------------------
+
+//install form and html and input classes
+
+../laravel_folder/composer.json
+
+"require": {
+    "laravelcollective/html": "5.2.*"
+}
+
+../laravel_folder/config/app.php
+'providers' => [
+...
+Collective\Html\HtmlServiceProvider::class,
+...
+],
+
+
+'aliases' => [
+// ...
+  'Form' => Collective\Html\FormFacade::class,
+  'Html' => Collective\Html\HtmlFacade::class,
+// ...
+],
+
+in terminal go to laravel_app_folder and run
+sudo composer update
+
+
+
+// install generators for migrations
+
+sudo composer require laracasts/generators --dev
+
+inside app/Providers/AppServiceProvider.php change public function register
+
+public function register()
+{
+    if ($this->app->environment() == 'local') {
+        $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
+    }
+}
+
+
+now you can do this
+
+sudo php artisan make:migration:schema create_roles_table --schema="name:string"
+sudo php artisan make:migration:schema remove_user_id_from_posts_table --schema="user_id:integer"
+sudo php artisan make:migration:pivot tags posts
+
+That's it everything set for working with Laravel 5.4
+@end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end @end 
+
+
+
+
+
