@@ -1,0 +1,16 @@
+/***
+/*
+//Testing POST Request in Software.ipvision.ca
+*/
+
+
+curl -v -c my_cookies.txt  http://software.ipvision.ca/index.php/login/user_login
+
+curl -v -b my_cookies.txt -d "username=107.1134&password=107.1134&login=Login" http://software.ipvision.ca/index.php/login/user_login
+
+curl -v -b my_cookies.txt -d "Submit Attendance" http://software.ipvision.ca/index.php/login/submit_attendance/298
+
+curl http://software.ipvision.ca/index.php/login/submit_attendance/298 -X POST
+
+//Success
+

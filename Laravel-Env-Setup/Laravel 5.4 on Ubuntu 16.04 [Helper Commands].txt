@@ -118,17 +118,19 @@ sudo leafpad /etc/apache2/sites-available/work.com.conf
 			Require all granted
 		</Directory>
 </VirtualHost>
-			
+
+// fix hosts file	
+sudo leafpad /etc/hosts
+#/etc/hosts contents following lines                                
+127.0.0.1       work.com
+		
 // enable that site
 sudo a2ensite work.com
 service apache2 reload
 sudo systemctl restart apache2
 
 
-// fix hosts file	
-sudo leafpad /etc/hosts
-#/etc/hosts contents following lines                                
-127.0.0.1       work.com
+
 
 
 

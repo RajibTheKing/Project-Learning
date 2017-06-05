@@ -1,0 +1,2653 @@
+    
+
+
+
+
+
+
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+
+
+    <head>
+
+
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+
+        <meta charset="utf-8" />
+
+
+
+        <title>Dashboard - HRM IPvision</title>
+
+
+
+
+
+
+
+        <meta name="description" content="overview &amp; stats" />
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+
+
+
+
+
+
+        <!-- bootstrap & fontawesome -->
+
+
+
+        <link rel="stylesheet" href="http://software.ipvision.ca/assets/css/bootstrap.min.css" />
+
+
+
+        <link rel="stylesheet" href="http://software.ipvision.ca/assets/font-awesome/4.2.0/css/font-awesome.min.css" />
+
+
+
+
+
+
+
+        <!-- page specific plugin styles -->
+
+
+
+
+
+
+
+        <!-- text fonts -->
+
+
+
+        <link rel="stylesheet" href="http://software.ipvision.ca/assets/fonts/fonts.googleapis.com.css" />
+
+
+
+
+
+
+
+        <!-- ace styles -->
+
+
+
+        <link rel="stylesheet" href="http://software.ipvision.ca/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+
+
+        <link rel="stylesheet" href="http://software.ipvision.ca/assets/css/style.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--[if lte IE 9]>
+
+
+
+                <link rel="stylesheet" href="http://software.ipvision.ca/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+
+
+
+        <![endif]-->
+
+
+
+
+
+
+
+        <!--[if lte IE 9]>
+
+
+
+          <link rel="stylesheet" href="http://software.ipvision.ca/assets/css/ace-ie.min.css" />
+
+
+
+        <![endif]-->
+
+
+
+
+
+
+
+        <!-- inline styles related to this page -->
+
+
+
+
+
+
+
+        <!-- ace settings handler -->
+
+
+
+        <script type="text/javascript" src="http://software.ipvision.ca/js/jquery.1.11.1.min.js"></script>
+
+
+
+        <script src="http://software.ipvision.ca/js/script.js" type="text/javascript"></script>
+
+
+
+        <script src="http://software.ipvision.ca/js/jquery-ui.min.js" type="text/javascript"></script>
+
+
+
+        <script src="http://software.ipvision.ca/js/custom.js" type="text/javascript"></script>
+
+
+
+        <script src="http://software.ipvision.ca/js/general.js" type="text/javascript"></script>
+
+
+
+        <script src="http://software.ipvision.ca/js/date_check_custom.js" type="text/javascript"></script>
+
+
+
+        <script src="http://software.ipvision.ca/assets/js/ace-extra.min.js"></script>
+
+
+
+        <link href="http://software.ipvision.ca/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+
+
+
+
+
+
+        <!--[if lte IE 8]>
+
+
+
+        <script src="http://software.ipvision.ca/assets/js/html5shiv.min.js"></script>
+
+
+
+        <script src="http://software.ipvision.ca/assets/js/respond.min.js"></script>
+
+
+
+        <![endif]-->
+
+
+
+
+
+
+
+        <script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
+            function deleteItem(msg)
+
+
+
+            {
+
+
+
+                if (confirm(msg))
+
+
+
+                    return true;
+
+
+
+                else
+
+
+
+                    return false;
+
+
+
+            }
+
+
+
+            function Confirm_msg(msg, shwID, focusId)
+
+
+
+            {
+
+
+
+                $("#" + shwID).empty();
+
+
+
+                $("#" + shwID).append('<span style="color:#FF0000; font-weight:bold"><img src="http://software.ipvision.ca/images/unchecked.gif" > ' + msg + '</span>');
+
+
+
+                if (focusId != '') {
+
+
+
+                    $("#" + focusId).focus();
+
+
+
+                    $("#" + focusId).select();
+
+
+
+                }
+
+
+
+                return (false);
+
+
+
+            }
+
+
+
+            function Confirm_msg_for_cust(msg, shwID, focusId)
+
+
+
+            {
+
+
+
+                $("#" + shwID).empty();
+
+
+
+                $("#" + shwID).append('<span style="color:#FF0000; font-weight:bold">' + msg + '</span>');
+
+
+
+                if (focusId != '') {
+
+
+
+                    $("#" + focusId).focus();
+
+
+
+                    $("#" + focusId).select();
+
+
+
+                }
+
+
+
+                return (false);
+
+
+
+            }
+
+
+
+            function showAll_CI(allvalue, s_inptID, msgg, formId, ErrormsgId)
+
+
+
+            {
+
+
+
+                var baseUrl = 'http://software.ipvision.ca/';
+
+
+
+                if (allvalue == 200 && document.getElementById(s_inptID).value == '') {
+
+
+
+                    //document.getElementById(ErrormsgId).innerHTML='<img src="'+baseUrl+'images/unchecked.gif" alt="verify" /><span style="color: #FF0000; font-weight:bold;"> '+msgg+'</span>';
+
+
+
+                    alert(msgg);
+
+
+
+                    document.getElementById(s_inptID).focus();
+
+
+
+                    return false;
+
+
+
+                }
+
+
+
+                else {
+
+
+
+                    document.getElementById(ErrormsgId).innerHTML = '&nbsp;';
+
+
+
+                }
+
+
+
+                if (allvalue == 200) {
+
+
+
+                    document.getElementById("s_sall").value = document.getElementById(s_inptID).value;
+
+
+
+                }
+
+
+
+                else if (allvalue == 100) {
+
+
+
+                    document.getElementById("s_sall").value = 9999999999;
+
+
+
+                }
+
+
+
+                document.getElementById(formId).submit();
+
+
+
+            }
+
+
+
+            function calcJulian(isDate)
+
+
+
+            {
+
+
+
+                gregDate = new Date(isDate);
+
+
+
+                year = gregDate.getFullYear();
+
+
+
+                month = gregDate.getMonth() + 1;
+
+
+
+                day = gregDate.getDate();
+
+
+
+                A = Math.floor((7 * (year + Math.floor((month + 9) / 12))) / 4);
+
+
+
+                B = day + Math.floor((275 * month) / 9)
+
+
+
+                isJulian = (367 * year) - A + B + 1721014;
+
+
+
+                return isJulian;
+
+
+
+            }
+
+
+
+            function birth_DATE_CHEK(prev_Date, Big_Date, Whatt)
+
+
+
+            {
+
+
+
+                tmp = prev_Date.split("-")
+
+
+
+                xDate = tmp[1] + "-" + tmp[0] + "-" + tmp[2];
+
+
+
+                pr_refDate = calcJulian(xDate);
+
+
+
+                tmp = Big_Date.split("/")
+
+
+
+                xDate = tmp[1] + "-" + tmp[0] + "-" + tmp[2];
+
+
+
+                B_fwdDate = calcJulian(xDate);
+
+
+
+
+
+
+
+                if (Whatt == 1) {
+
+
+
+                    return (pr_refDate - B_fwdDate);
+
+
+
+                }
+
+
+
+            }
+
+
+
+            function isDecimalValidKey(textboxIn, evt)
+
+
+
+            {
+
+
+
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+
+
+
+                if (charCode > 31 && (charCode < 45 || charCode == 47 || charCode > 57))
+
+
+
+                {
+
+
+
+                    return false;
+
+
+
+                }
+
+
+
+                if (charCode == 46 && textboxIn.value.indexOf(".") != -1)
+
+
+
+                {
+
+
+
+                    return false;
+
+
+
+                }
+
+
+
+                return true;
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+
+
+
+
+
+
+
+    </head>
+
+
+
+
+
+
+
+    <body class="no-skin">
+
+
+
+        <div id="navbar" class="navbar navbar-default">
+
+
+
+            <script type="text/javascript">
+
+
+
+                try {
+
+
+
+                    ace.settings.check('navbar', 'fixed')
+
+
+
+                } catch (e) {
+
+
+
+                }
+
+
+
+            </script>
+
+
+
+
+
+
+
+            <div class="navbar-container" id="navbar-container">
+
+
+
+                <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+
+
+
+                    <span class="sr-only">Toggle sidebar</span>
+
+
+
+
+
+
+
+                    <span class="icon-bar"></span>
+
+
+
+
+
+
+
+                    <span class="icon-bar"></span>
+
+
+
+
+
+
+
+                    <span class="icon-bar"></span>
+
+
+
+                </button>
+
+
+
+
+
+
+
+                <div class="navbar-header pull-left">
+
+
+
+                    <a href="http://software.ipvision.ca/index.php" class="navbar-brand">
+
+
+
+                        <small>
+
+
+
+                            <img src="http://software.ipvision.ca/images/log.png" height="25" width="75"/>
+
+
+
+                            HRM IPvision
+
+
+
+                        </small>
+
+
+
+                    </a>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="navbar-buttons navbar-header pull-right" role="navigation">
+
+
+
+                    <ul class="nav ace-nav">
+
+
+
+                        <li>
+
+
+
+                            
+
+
+                                
+
+
+                                
+
+
+                                    <img src="http://software.ipvision.ca/emp_img/emp_1472700233_thumb.jpg" height="50" width="50" />
+
+
+
+                                
+
+
+                            
+
+
+                        </li>
+
+
+
+                        <li class="light-blue">
+
+
+
+                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+
+
+
+                                <span class="user-info">
+
+
+
+                                    <small>Welcome,</small>
+
+
+
+
+
+
+
+                                    Rajib Chandra Das
+
+
+                                </span>
+
+
+
+
+
+
+
+                                <i class="ace-icon fa fa-caret-down"></i>
+
+
+
+                            </a>
+
+
+
+
+
+
+
+                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+
+
+
+                                
+
+
+                                    <li>
+
+
+
+                                        <a href="http://software.ipvision.ca/employee/insert/298">
+
+
+
+                                            <i class="ace-icon fa fa-user"></i>
+
+
+
+                                            Profile
+
+
+
+                                        </a>
+
+
+
+                                    </li>
+
+
+
+                                    <li>
+
+
+
+                                        <a href="http://software.ipvision.ca/employee/pass/298">
+
+
+
+                                            <i class="fa fa-refresh"></i>
+
+
+
+                                            Change Password
+
+
+
+                                        </a>
+
+
+
+                                    </li>
+
+
+
+
+
+
+
+                                    <li class="divider"></li>
+
+
+
+                                
+
+
+                                <li>
+
+
+
+                                    <a href="http://software.ipvision.ca/login/logout">
+
+
+
+                                        <i class="ace-icon fa fa-power-off"></i>
+
+
+
+                                        Logout
+
+
+
+                                    </a>
+
+
+
+                                </li>
+
+
+
+                            </ul>
+
+
+
+                        </li>
+
+
+
+                    </ul>
+
+
+
+                </div>
+
+
+
+            </div><!-- /.navbar-container -->
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+        <div class="main-container" id="main-container">
+
+
+
+            <script type="text/javascript">
+
+
+
+                try {
+
+
+
+                    ace.settings.check('main-container', 'fixed')
+
+
+
+                } catch (e) {
+
+
+
+                }
+
+
+
+            </script>
+
+
+
+
+
+
+
+            <div id="sidebar" class="sidebar responsive">
+
+
+
+                <script type="text/javascript">
+
+
+
+                    try {
+
+
+
+                        ace.settings.check('sidebar', 'fixed')
+
+
+
+                    } catch (e) {
+
+
+
+                    }
+
+
+
+                </script>
+
+
+
+
+
+
+
+                <!-- /.sidebar-shortcuts -->
+
+
+
+
+
+
+
+                
+
+
+                    <ul class="nav nav-list">
+
+
+
+                        <li class='active'>
+
+
+
+                            <a href="http://software.ipvision.ca/index.php/login/home">
+
+
+
+                                <i class="menu-icon fa fa-tachometer"></i>
+
+
+
+                                <span class="menu-text"> Dashboard </span>
+
+
+
+                            </a>
+
+
+
+
+
+
+
+                            <b class="arrow"></b>
+
+
+
+                        </li>
+
+
+
+                        <li >
+
+
+
+                            <a href="#" class="dropdown-toggle">
+
+
+
+                                <i class="menu-icon fa fa-recycle"></i>
+
+
+
+                                <span class="menu-text">Activity  </span>
+
+
+
+
+
+
+
+                                <b class="arrow fa fa-angle-down"></b>
+
+
+
+                            </a>
+
+
+
+
+
+
+
+                            <b class="arrow"></b>
+
+
+
+
+
+
+
+                            <ul class="submenu">
+
+
+
+                                <li >
+
+
+
+                                    <a href="http://software.ipvision.ca/activity/view">
+
+
+
+                                        <i class="menu-icon fa fa-caret-right"></i>
+
+
+
+                                        View Activity
+
+
+
+                                    </a>
+
+
+
+                                </li>
+
+
+
+                                <b class="arrow"></b>
+
+
+
+                                
+
+
+
+
+
+
+                            </ul>
+
+
+
+                        </li>
+
+
+
+
+
+
+
+                        <li >
+
+
+
+                            <a href="#" class="dropdown-toggle">
+
+
+
+                                <i class="menu-icon fa fa-exchange"></i>
+
+
+
+                                <span class="menu-text">Requisition</span>
+
+
+
+
+
+
+
+                                <b class="arrow fa fa-angle-down"></b>
+
+
+
+                            </a>
+
+
+
+
+
+
+
+                            <b class="arrow"></b>
+
+
+
+
+
+
+
+                            <ul class="submenu">
+
+
+
+
+
+
+
+                                
+
+
+
+
+
+
+                                <li >
+
+
+
+                                    <a href="http://software.ipvision.ca/index.php/require_info/requir_part/298">
+
+
+
+                                        <i class="menu-icon fa fa-caret-right"></i>
+
+
+
+                                        Requisition
+
+
+
+                                    </a>
+
+
+
+
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+
+
+                            </ul>
+
+
+
+                        </li>
+
+
+
+
+
+
+
+
+
+
+
+                        <li >
+
+
+
+                            <a href="#" class="dropdown-toggle">
+
+
+
+                                <i class="menu-icon fa fa-arrow-right"></i>
+
+
+
+                                <span class="menu-text"> Leave Particular </span>
+
+
+
+
+
+
+
+                                <b class="arrow fa fa-angle-down"></b>
+
+
+
+                            </a>
+
+
+
+
+
+
+
+                            <b class="arrow"></b>
+
+
+
+
+
+
+
+                            <ul class="submenu">
+
+
+
+                                <li >
+
+
+
+                                    <a href="http://software.ipvision.ca/lev_rep/leave/298"><i class="menu-icon fa fa-caret-right"></i>Apply For Leave</a>
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+
+
+                                <li >
+
+
+
+                                    <a href="http://software.ipvision.ca/index.php/lev_rep/lev_details"><i class="menu-icon fa fa-caret-right"></i>Leave Details</a>
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+
+
+
+
+
+
+                                
+
+
+                                <li >
+
+
+
+                                    <a href="http://software.ipvision.ca/lev_rep/leave_state/298"><i class="menu-icon fa fa-caret-right"></i>Current Leave State</a>
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+
+
+                                
+
+
+                                
+
+
+                                <li >
+
+
+
+                                    <a href="http://software.ipvision.ca/index.php/calender/calender_design">
+
+
+
+                                        <i class="menu-icon fa fa-caret-right"></i>
+
+
+
+                                        Holiday Calendar
+
+
+
+                                    </a>
+
+
+
+
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+
+
+                            </ul>
+
+
+
+                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <li >
+
+
+
+                            <a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-phone"></i><span class="menu-text"> Extension </span>
+
+
+
+                                <b class="arrow fa fa-angle-down"></b>
+
+
+
+                            </a>
+
+
+
+                            <b class="arrow"></b>
+
+
+
+                            <ul class="submenu">
+
+
+
+                                <li >
+
+
+
+                                    <a href="http://software.ipvision.ca/index.php/login/ext_num"><i class="menu-icon fa fa-caret-right"></i><span class="menu-text"> Extension Number</span></a>
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+
+
+                                
+
+
+                            </ul>
+
+
+
+                        </li>
+
+
+
+
+
+
+
+                        <li >
+
+
+
+                            <a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-child"></i><span class="menu-text"> View Attendance </span>
+
+
+
+                                <b class="arrow fa fa-angle-down"></b>
+
+
+
+                            </a>
+
+
+
+                            <b class="arrow"></b>
+
+
+
+                            <ul class="submenu">
+
+
+
+                                <li >
+
+
+
+                                    <a href="http://software.ipvision.ca/index.php/emp_info/attendance/298"><i class="menu-icon fa fa-caret-right"></i><span class="menu-text"> Own Attendance</span></a>
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+
+
+                                <li >
+
+
+
+                                    <a href="http://software.ipvision.ca/index.php/emp_info/own_current_attendance/298"><i class="menu-icon fa fa-caret-right"></i><span class="menu-text"> Own Current Attendance</span></a>
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+
+
+                                
+                                <li >
+
+
+
+                                    <a  href="http://software.ipvision.ca/index.php/emp_info/absent"><i class="menu-icon fa fa-caret-right"></i>Absent Summary </a>
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+                                <li >
+
+
+
+                                    <a  href="http://software.ipvision.ca/index.php/emp_info/todays_leave"><i class="menu-icon fa fa-caret-right"></i> Todays Leave </a>
+
+
+
+                                    <b class="arrow"></b>
+
+
+
+                                </li>
+
+
+
+
+
+                            </ul>
+
+
+
+                        </li>
+
+
+
+
+
+
+
+                        <li >
+
+
+
+                            <a href="http://software.ipvision.ca/activity/advance_pay/298/"><i class="menu-icon fa fa-usd"></i><span class="menu-text"> Apply for Advance </span>
+
+
+
+                            </a>
+
+
+
+                            <b class="arrow"></b>
+
+
+
+                        </li>
+
+
+
+                        <li >
+
+
+
+                            <a href="http://software.ipvision.ca/employee/assets/298/"><i class="menu-icon fa fa-cubes"></i><span class="menu-text">Assets</span>
+
+
+
+                            </a>
+
+
+
+                            <b class="arrow"></b>
+
+
+
+                        </li>
+
+
+
+
+
+
+
+                        <li >
+
+
+
+                            <a href="http://software.ipvision.ca/cv_upload/add"><i class="menu-icon fa fa-envelope-o" aria-hidden="true"></i><span class="menu-text"> C.V Upload </span></a>
+
+
+
+                            <b class="arrow"></b>
+
+
+
+                        </li>
+
+
+
+                        <li >
+
+
+
+                            <a href="http://software.ipvision.ca/job_circular/index"><i class="menu-icon fa fa-briefcase" aria-hidden="true"></i><span class="menu-text">Job Circular </span></a>
+
+
+
+                            <b class="arrow"></b>
+
+
+
+                        </li>
+
+
+
+
+
+
+
+                        <li >
+
+
+
+                            <a href="http://software.ipvision.ca/emp_info/view"><i class="menu-icon fa fa-info"></i><span class="menu-text"> Employee Info. </span></a>
+
+
+
+                            <b class="arrow"></b>
+
+
+
+                        </li>
+
+
+
+                        
+
+
+                    </ul>
+
+
+
+
+
+
+
+                
+
+
+                <!-- /.nav-list -->
+
+
+
+
+
+
+
+                <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+
+
+
+                    <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <script type="text/javascript">
+
+
+
+                    try {
+
+
+
+                        ace.settings.check('sidebar', 'collapsed')
+
+
+
+                    } catch (e) {
+
+
+
+                    }
+
+
+
+                </script>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- /.main-content -->
+
+
+
+            <div class="main-content">
+
+
+
+                <div class="main-content-inner">
+
+
+
+                    <div class="breadcrumbs" id="breadcrumbs">
+
+
+
+                        <script type="text/javascript">
+
+
+
+                            try {
+
+
+
+                                ace.settings.check('breadcrumbs', 'fixed')
+
+
+
+                            } catch (e) {
+
+
+
+                            }
+
+
+
+                        </script>
+
+
+
+
+
+
+
+                        <ul class="breadcrumb">
+
+
+
+                            <li>
+
+
+
+                                <a href="http://software.ipvision.ca/index.php"><i class="ace-icon fa fa-home home-icon"></i>Home</a>
+
+
+
+                            </li>
+
+
+
+                            <li class="active">
+
+
+
+                                Dashboard
+
+
+                            </li>
+
+
+
+                        </ul><!-- /.breadcrumb -->
+
+
+
+
+
+
+
+                    </div>
+
+
+
+<div class="page-content">
+
+    <div class="alert alert-block alert-success">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>
+
+        <i class="ace-icon fa fa-check green"></i>
+
+        Welcome to
+        <strong class="green">
+            HRM Ipvision
+        </strong>
+
+    </div>
+<div class="row">
+ <div class="col-md-7">
+    <!-- $_SERVER['REMOTE_ADDR'] == '103.26.112.17'-->
+          <form method="post" action="http://software.ipvision.ca/index.php/login/submit_attendance/298">
+         <input type="submit" class="btn btn-default btn-sm btn-primary" value="Submit Attendance">
+     </form>
+
+    
+        
+
+
+
+                     <!--<div class="table-responsive margin">
+             <h5> Replacement Application for Approval (2017)</h5>
+                <table width="100%" class="table table-bordered table-striped table-hover overflow">
+                    <tr align="center">
+                        <th align="left" class="cellLabelconet" width="10%">Employee Info</th>
+                        <th align="left" class="cellLabelconet" width="10%">Want to do work  </th>
+                        <th align="left" class="cellLabelconet" width="10%">Want to take leave </th>
+                        <th align="left" class="cellLabelconet" width="10%">Leave State</th>              
+                    </tr>
+                                                <tr align="center">
+                                <td align="left" class="dvtCellContent" > <br/> </td>
+                                <td align="left" class="dvtCellContent" >  </td>
+                                <td align="left" class="dvtCellContent" >  </td>
+                                <td align="left" class="dvtCellContent" >
+                                    <a title="verify Replace" href="http://software.ipvision.ca/index.php/permit_leave/replace/#rp" >Details </a> 
+                                </td>
+                            </tr>
+                                                    <tr align="center">
+                            <td align="center" class="dvtCellContent" colspan="6" >No application In this Year </td>             
+                        </tr>
+                                    </table>
+            </div> -->
+        
+
+
+
+     <!--   -->
+
+
+             <div class="table-responsive">
+				<table width="100%" class="table table-bordered table-striped">
+                    <tr align="center">
+                        <th class="detailedViewHeaderContent" colspan="5">  Attendance Schedule (March,2017) </th>
+                    </tr>
+                    <tr align="center">
+                        <th align="left" class="cellLabelconet" width="10%"> Date </th>
+                        <th align="left" class="cellLabelconet" width="10%"> Day </th>
+                        <th align="left" class="cellLabelconet" width="10%"> Start time</th>
+                        <th align="left" class="cellLabelconet" width="10%"> End Time </th>   
+                        <th align="left" class="cellLabelconet" width="10%"> Duration </th>  
+                    </tr>
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-01 </td>
+                            <td align="left" class="cellLabelall"  >  Wednesday </td>
+                            <td align="left" class="cellLabelall"   >  09:56:11 am  </td>
+                            <td align="left" class="cellLabelall"  >  07:01:22 pm  </td>
+                            <td align="left" class="cellLabelall"  >  09:05:11 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-02 </td>
+                            <td align="left" class="cellLabelall"  >  Thursday </td>
+                            <td align="left" class="cellLabelall"   >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-03 </td>
+                            <td align="left" class="cellLabelall"  >  Friday </td>
+                            <td align="left" class="cellLabelall"   >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-04 </td>
+                            <td align="left" class="cellLabelall"  >  Saturday </td>
+                            <td align="left" class="cellLabelall"   >  09:58:30 am  </td>
+                            <td align="left" class="cellLabelall"  >  08:15:01 pm  </td>
+                            <td align="left" class="cellLabelall"  >  10:16:31 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-05 </td>
+                            <td align="left" class="cellLabelall"  >  Sunday </td>
+                            <td align="left" class="cellLabelall"   >  09:59:06 am  </td>
+                            <td align="left" class="cellLabelall"  >  09:29:39 pm  </td>
+                            <td align="left" class="cellLabelall"  >  11:30:33 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-06 </td>
+                            <td align="left" class="cellLabelall"  >  Monday </td>
+                            <td align="left" class="cellLabelall"   >  09:55:14 am  </td>
+                            <td align="left" class="cellLabelall"  >  07:48:48 pm  </td>
+                            <td align="left" class="cellLabelall"  >  09:53:34 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-07 </td>
+                            <td align="left" class="cellLabelall"  >  Tuesday </td>
+                            <td align="left" class="cellLabelall"   >  09:57:33 am  </td>
+                            <td align="left" class="cellLabelall"  >  09:18:09 pm  </td>
+                            <td align="left" class="cellLabelall"  >  11:20:36 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-08 </td>
+                            <td align="left" class="cellLabelall"  >  Wednesday </td>
+                            <td align="left" class="cellLabelall"   >  10:07:31 am  </td>
+                            <td align="left" class="cellLabelall"  >  07:33:17 pm  </td>
+                            <td align="left" class="cellLabelall"  >  09:25:46 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-09 </td>
+                            <td align="left" class="cellLabelall"  >  Thursday </td>
+                            <td align="left" class="cellLabelall"   >  10:00:19 am  </td>
+                            <td align="left" class="cellLabelall"  >  11:45:27 pm  </td>
+                            <td align="left" class="cellLabelall"  >  13:45:08 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-10 </td>
+                            <td align="left" class="cellLabelall"  >  Friday </td>
+                            <td align="left" class="cellLabelall"   >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-11 </td>
+                            <td align="left" class="cellLabelall"  >  Saturday </td>
+                            <td align="left" class="cellLabelall"   >  09:56:51 am  </td>
+                            <td align="left" class="cellLabelall"  >  07:35:15 pm  </td>
+                            <td align="left" class="cellLabelall"  >  09:38:24 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-12 </td>
+                            <td align="left" class="cellLabelall"  >  Sunday </td>
+                            <td align="left" class="cellLabelall"   >  09:56:51 am  </td>
+                            <td align="left" class="cellLabelall"  >  07:43:14 pm  </td>
+                            <td align="left" class="cellLabelall"  >  09:46:23 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-13 </td>
+                            <td align="left" class="cellLabelall"  >  Monday </td>
+                            <td align="left" class="cellLabelall"   >  09:58:07 am  </td>
+                            <td align="left" class="cellLabelall"  >  09:13:38 pm  </td>
+                            <td align="left" class="cellLabelall"  >  11:15:31 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-14 </td>
+                            <td align="left" class="cellLabelall"  >  Tuesday </td>
+                            <td align="left" class="cellLabelall"   >  09:57:49 am  </td>
+                            <td align="left" class="cellLabelall"  >  10:02:37 pm  </td>
+                            <td align="left" class="cellLabelall"  >  12:04:48 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-15 </td>
+                            <td align="left" class="cellLabelall"  >  Wednesday </td>
+                            <td align="left" class="cellLabelall"   >  09:58:37 am  </td>
+                            <td align="left" class="cellLabelall"  >  09:55:23 pm  </td>
+                            <td align="left" class="cellLabelall"  >  11:56:46 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-16 </td>
+                            <td align="left" class="cellLabelall"  >  Thursday </td>
+                            <td align="left" class="cellLabelall"   >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-17 </td>
+                            <td align="left" class="cellLabelall"  >  Friday </td>
+                            <td align="left" class="cellLabelall"   >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="cellLabelall"  >  2017-03-18 </td>
+                            <td align="left" class="cellLabelall"  >  Saturday </td>
+                            <td align="left" class="cellLabelall"   >  09:56:21 am  </td>
+                            <td align="left" class="cellLabelall"  >  09:56:21 am  </td>
+                            <td align="left" class="cellLabelall"  >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-19 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Sunday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-20 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Monday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-21 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Tuesday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-22 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Wednesday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-23 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Thursday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-24 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Friday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-25 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Saturday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-26 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Sunday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-27 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Monday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-28 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Tuesday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-29 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Wednesday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-30 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Thursday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    
+                        <tr align="center"  >
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  2017-03-31 </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  Friday </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2"  >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00  </td>
+                            <td align="left" class="dvtCellContent" style="background:#8ab6e2" >  00:00:00 </td>
+                        </tr>                               
+                    					<tr>
+						<td colspan="4">Total:</td>
+						<td>129:59:11</td>
+					</tr>
+                </table>
+				
+				
+								<table width="100%" class="table table-bordered table-striped">
+                        
+                        <tr  style="background:#333333;color:#FFFFFF;" align="center">
+                            <td class="dvtCellInfo" colspan="9"  ><b>Previous Month Attendance Summary: (February</b> ,2017)</td> 
+                        </tr>
+
+
+                        <tr class="even" onmouseout="this.className = 'odd'" onmouseover="this.className = 'lvtColDataHover'"  >                                                      
+                            <td class="dvtCellInfo" colspan="3" >
+								<b>Total Working day: </b>18&nbsp; 
+								<br/>
+								<b>Total Working hours: </b> 144 hr &nbsp;
+                            </td>
+                            <td class="dvtCellInfo" colspan="4" >
+								<b>After taking leave Working day: </b>18&nbsp;
+								<br/>
+								<b>After taking leave Working hours: </b> 144 hr &nbsp;
+							</td>
+                        </tr>
+
+                        <tr class="even" onmouseout="this.className = 'odd'" onmouseover="this.className = 'lvtColDataHover'">
+                            <td class="dvtCellInfo" width="7%"><strong>&nbsp;Present</strong></td>
+                            <td class="dvtCellInfo" width="7%"><strong>&nbsp;Late </strong></td>
+                            <td class="dvtCellInfo" width="7%"><strong>&nbsp;Early Leave</strong></td>
+                            <td class="dvtCellInfo" width="7%"><strong>&nbsp;Leave</strong></td>
+                            <td class="dvtCellInfo" width="7%"><strong>&nbsp;Absent </strong></td>
+                            <td class="dvtCellInfo" width="8%"><strong>&nbsp; Total Time </strong></td>
+                            <td class="dvtCellInfo" width="7%"><strong>&nbsp;Extra Duty </strong></td>
+                            <!--<td class="dvtCellInfo" width="7%"><strong>&nbsp;Replace Work </strong></td>
+                            <td class="dvtCellInfo" width="7%"><strong>&nbsp;Replace Leave </strong></td>-->
+                        </tr>
+
+
+                        <tr class="even" onmouseout="this.className = 'odd'" onmouseover="this.className = 'lvtColDataHover'">
+                            <td class="dvtCellInfo" >18&nbsp;</td> <!--present -->
+                            <td class="dvtCellInfo" >1&nbsp;</td> <!--Late -->
+                            <td class="dvtCellInfo" >1&nbsp;</td> <!--Early -->
+                            <td class="dvtCellInfo" >0&nbsp;</td> <!--Leave -->
+                            <td class="dvtCellInfo" >0&nbsp;<!--Absent -->
+                            </td>
+                            <td  class="dvtCellInfo" >
+                                172 hr 49 min 48 sec&nbsp;
+                            </td>
+
+                            <td  class="dvtCellInfo" >0&nbsp;<!--Extra Duty Day -->
+                            </td>
+                            <!--<td class="dvtCellInfo" >0&nbsp;</td> Leave -->
+                            <!--<td class="dvtCellInfo" >0&nbsp;</td> Leave -->
+                        </tr>
+                    </table>
+								             </div>
+			
+			
+
+									
+
+
+     <div class="table-responsive">
+            <table width="100%" class="table table-bordered table-striped">
+                <tr align="center">
+                    <th class="detailedViewHeader" colspan="5"> Upcoming Birth Day </th>
+                </tr>
+
+                <tr align="center">
+                    <th align="left" class="dvtCellLabel" width="10%"> Employee Id </th>
+                    <th align="left" class="dvtCellLabel" width="10%"> Name  </th>
+                    <th align="left" class="dvtCellLabel" width="10%"> Birth Date</th> 
+                    <th align="left" class="dvtCellLabel" width="10%"> Email Address</th> 
+                    <th align="left" class="dvtCellLabel" width="10%"> Division</th>
+                </tr>
+
+                
+                    <tr align="center">
+                        <td  class="dvtCellInfo" colspan="5" > No Upcoming birth day in next 3 days.</td>                       
+                    </tr>
+                            </table>
+        </div>
+ 
+
+								
+
+   </div>
+<style type="text/css">
+.overflow {
+    display: block;
+    max-height: 300px;
+	overflow-y:scroll;
+}
+.margin{
+margin:15px 0;	
+}
+.table-responsive.margin h5 {
+  background: #ddd;
+  padding: 8px;
+  margin-bottom: 0;
+</style>   
+
+
+<div class="col-lg-5 col-md-5 col-sm-5">
+<!--
+<div class="widget-box">
+    <div class="widget-header widget-header-flat widget-header-small">
+        <h5 class="widget-title">
+            <i class="ace-icon fa fa-signal"></i>
+           Work Schedule Traffic
+        </h5>
+
+        
+    </div>
+
+    <div class="widget-body">
+        <div class="widget-main">
+            <div id="piechart-placeholder"></div>
+
+            <div class="hr hr8 hr-double"></div>
+
+            
+        </div>
+    </div>
+</div>  -->
+    <!--**************meal start***********************************/-->
+<form name="meal_form" id="meal_data" action="" method="post">
+    <div class="table-responsive" id="meal-table">
+        <table width="100%" class="table table-bordered table-striped">
+            <tr align="center">
+                <th class="detailedViewHeaderContent" colspan="8"> Meal System for Next Days &nbsp;&nbsp; <div id="meal-msg"></div> </th>
+            </tr>
+                        <tr align="center">
+                <td class="cellLabelconet">Date</td>
+                <td class="cellLabelconet">Day</td>
+                <td class="cellLabelconet" colspan="2">Breakfast</td>
+                <td class="cellLabelconet" colspan="2">Lunch</td>
+                <td class="cellLabelconet" colspan="2">Main Dish For Lunch</td>
+            </tr>
+
+            
+                
+                <tr>
+                    <td class="cellLabelconet">2017-03-19</td>
+                    <td class="cellLabelconet">Sun</td>
+
+                   <td>
+                   <input id="by_Sun" data-date="2017-03-19" type="radio"   name="breakfast_Sun"  value="1">Yes                   </td>
+                   <td>
+                       <input id="bn_Sun" data-date="2017-03-19" type="radio"  name="breakfast_Sun" value="0">No                   </td>
+
+                    <td id="Sun">
+                        <input class="meal_item2"  id="ly_Sun" data-date="2017-03-19" type="radio"   name="lunch_Sun"  value="1">Yes                        </td>
+                    <td>
+                        <input id="ln_Sun" data-date="2017-03-19" type="radio"  name="lunch_Sun" value="0">No                    </td>
+
+                                                                        <td>
+                            <input class="meal_item1" id="ml_Sun" data-date="2017-03-19" type="radio"   name="meal_Sun"  value="2">Chicken                        </td>
+                            <td>
+                                <input id="ml_Sun" data-date="2017-03-19" type="radio"  name="meal_Sun" value="3">Egg                            </td>
+
+                                                                                                                                                
+                </tr>
+
+            
+                
+                <tr>
+                    <td class="cellLabelconet">2017-03-20</td>
+                    <td class="cellLabelconet">Mon</td>
+
+                   <td>
+                   <input id="by_Mon" data-date="2017-03-20" type="radio"   name="breakfast_Mon"  value="1">Yes                   </td>
+                   <td>
+                       <input id="bn_Mon" data-date="2017-03-20" type="radio"  name="breakfast_Mon" value="0">No                   </td>
+
+                    <td id="Mon">
+                        <input class="meal_item2"  id="ly_Mon" data-date="2017-03-20" type="radio"   name="lunch_Mon"  value="1">Yes                        </td>
+                    <td>
+                        <input id="ln_Mon" data-date="2017-03-20" type="radio"  name="lunch_Mon" value="0">No                    </td>
+
+                                                                                                <td>
+                            <input class="meal_item1" type="radio" id="ml_Mon" data-date="2017-03-20"   name="meal_Mon"  value="1">Fish                        </td>
+                            <td>
+                                <input type="radio" id="ml_Mon" data-date="2017-03-20"  name="meal_Mon" value="3">Egg                            </td>
+
+                                                                                                                        
+                </tr>
+
+            
+                
+                <tr>
+                    <td class="cellLabelconet">2017-03-21</td>
+                    <td class="cellLabelconet">Tue</td>
+
+                   <td>
+                   <input id="by_Tue" data-date="2017-03-21" type="radio"   name="breakfast_Tue"  value="1">Yes                   </td>
+                   <td>
+                       <input id="bn_Tue" data-date="2017-03-21" type="radio"  name="breakfast_Tue" value="0">No                   </td>
+
+                    <td id="Tue">
+                        <input class="meal_item2"  id="ly_Tue" data-date="2017-03-21" type="radio"   name="lunch_Tue"  value="1">Yes                        </td>
+                    <td>
+                        <input id="ln_Tue" data-date="2017-03-21" type="radio"  name="lunch_Tue" value="0">No                    </td>
+
+                                                                                                                        <td>
+                            <input class="meal_item1" type="radio" id="ml_Tue" data-date="2017-03-21"   name="meal_Tue"  value="2">Chicken                        </td>
+                            <td>
+                                <input type="radio" id="ml_Tue" data-date="2017-03-21"  name="meal_Tue" value="3">Egg                            </td>
+
+                                                                                                
+                </tr>
+
+            
+                
+                <tr>
+                    <td class="cellLabelconet">2017-03-22</td>
+                    <td class="cellLabelconet">Wed</td>
+
+                   <td>
+                   <input id="by_Wed" data-date="2017-03-22" type="radio"   name="breakfast_Wed"  value="1">Yes                   </td>
+                   <td>
+                       <input id="bn_Wed" data-date="2017-03-22" type="radio"  name="breakfast_Wed" value="0">No                   </td>
+
+                    <td id="Wed">
+                        <input class="meal_item2"  id="ly_Wed" data-date="2017-03-22" type="radio"   name="lunch_Wed"  value="1">Yes                        </td>
+                    <td>
+                        <input id="ln_Wed" data-date="2017-03-22" type="radio"  name="lunch_Wed" value="0">No                    </td>
+
+                                                                                                                                                <td>
+                            <input class="meal_item1" type="radio" id="ml_Wed" data-date="2017-03-22"   name="meal_Wed"  value="4">Special                        </td>
+                            <td>
+                                <input type="radio" disabled id="ml_Wed" data-date="2017-03-22"  name="meal_Wed" value="0">N/A                            </td>
+
+                                                                        
+                </tr>
+
+            
+                
+                <tr>
+                    <td class="cellLabelconet">2017-03-23</td>
+                    <td class="cellLabelconet">Thu</td>
+
+                   <td>
+                   <input id="by_Thu" data-date="2017-03-23" type="radio"   name="breakfast_Thu"  value="1">Yes                   </td>
+                   <td>
+                       <input id="bn_Thu" data-date="2017-03-23" type="radio"  name="breakfast_Thu" value="0">No                   </td>
+
+                    <td id="Thu">
+                        <input class="meal_item2"  id="ly_Thu" data-date="2017-03-23" type="radio"   name="lunch_Thu"  value="1">Yes                        </td>
+                    <td>
+                        <input id="ln_Thu" data-date="2017-03-23" type="radio"  name="lunch_Thu" value="0">No                    </td>
+
+                                                                                                                                                                        <td>
+                            <input class="meal_item1" type="radio" id="ml_Thu" data-date="2017-03-23"   name="meal_Thu"  value="1">Fish                        </td>
+                            <td>
+                                <input type="radio"  id="ml_Thu" data-date="2017-03-23"  name="meal_Thu" value="3">Egg                            </td>
+
+                                                
+                </tr>
+
+            
+                
+                <tr>
+                    <td class="cellLabelconet">2017-03-24</td>
+                    <td class="cellLabelconet">Fri</td>
+
+                   <td>
+                   <input id="by_Fri" data-date="2017-03-24" type="radio"   name="breakfast_Fri"  value="1">Yes                   </td>
+                   <td>
+                       <input id="bn_Fri" data-date="2017-03-24" type="radio"  name="breakfast_Fri" value="0">No                   </td>
+
+                    <td id="Fri">
+                        <input class="meal_item2"  id="ly_Fri" data-date="2017-03-24" type="radio"   name="lunch_Fri"  value="1">Yes                        </td>
+                    <td>
+                        <input id="ln_Fri" data-date="2017-03-24" type="radio"  name="lunch_Fri" value="0">No                    </td>
+
+                                                                                                                                                                                                <td>
+                            <input class="meal_item1" type="radio" id="ml_Fri" data-date="2017-03-24"   name="meal_Fri"  value="1">Fish                        </td>
+                            <td>
+                                <input type="radio"  id="ml_Fri" data-date="2017-03-24"  name="meal_Fri" value="3">Egg                            </td>
+
+                        
+                </tr>
+
+            
+                
+                <tr>
+                    <td class="cellLabelconet">2017-03-25</td>
+                    <td class="cellLabelconet">Sat</td>
+
+                   <td>
+                   <input id="by_Sat" data-date="2017-03-25" type="radio"   name="breakfast_Sat"  value="1">Yes                   </td>
+                   <td>
+                       <input id="bn_Sat" data-date="2017-03-25" type="radio"  name="breakfast_Sat" value="0">No                   </td>
+
+                    <td id="Sat">
+                        <input class="meal_item2"  id="ly_Sat" data-date="2017-03-25" type="radio"   name="lunch_Sat"  value="1">Yes                        </td>
+                    <td>
+                        <input id="ln_Sat" data-date="2017-03-25" type="radio"  name="lunch_Sat" value="0">No                    </td>
+
+                                                <td>
+                            <input class="meal_item1"  id="ml_Sat" data-date="2017-03-25"  type="radio"  name="meal_Sat"  value="1">Fish                        </td>
+                        <td>
+                            <input id="ml_Sat" data-date="2017-03-25" type="radio"  name="meal_Sat" value="3">Egg                        </td>
+
+                                                                                                                                                                        
+                </tr>
+
+            
+
+        </table>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+
+        $('#meal-table input[type="radio"]').click(meal_status);
+
+        function meal_status(){
+            var value = $(this).val();
+            var meal_name = $(this).attr('name');
+            var date = $(this).data('date');
+            if(meal_name.indexOf('lunch')!=-1) {
+                var lunch_yes = $(this).closest('tr').find('input.meal_item1');
+                if(value==1) {
+                    lunch_yes.prop("checked", true);
+                } else if(value==0) {
+                    lunch_yes.prop("checked", false);
+                    var item = lunch_yes.parent().next('td').find('input');
+                    item.prop("checked", false);
+                }
+              }
+
+            if(meal_name.indexOf('meal')!=-1){
+                var meal_item = $(this).closest('tr').find('input.meal_item2');
+                if(value>0) {
+                    meal_item.prop("checked", true);
+                }
+            }
+            $.ajax({
+                url: "http://software.ipvision.ca/index.php/login/meal_submit/" + value + "/" + date + "/" + meal_name,
+                type:"post",
+                success: function (result) {
+                    if(result == 2){
+                        $('#meal-msg p').remove();
+                        $('#meal-msg').append('<p>Meal status updated successfully</p>').fadeIn(400);
+                    }else if(result == 1){
+                        $('#meal-msg p').remove();
+                           $('#meal-msg').append('<p>Meal submitted successfully</p>').fadeIn(400);
+                    }else if(result == 0){
+                        window.location.href = "http://software.ipvision.ca/index.php/login";
+                    }
+                    $('#meal-msg').fadeOut(3000);
+
+                }
+            });
+        }
+    });
+
+</script>
+
+ <!-- *************meal end************************************-->
+     
+	<div class="table-responsive">
+            <table width="100%" class="table table-bordered table-striped">
+                <tr align="center">
+                    <th class="detailedViewHeaderContent" colspan="5"> HR Notice </th>
+                </tr>
+                <tr align="center">
+                    <th align="left" class="cellLabelconet" width="15%">Title </th>
+                    <th align="left" class="cellLabelconet" width="15%">Date </th>
+                    <th align="left" class="cellLabelconet" width="10%"> Company </th>
+                    <th align="left" class="cellLabelconet" width="65%"> Details </th>
+                    <th align="left" class="cellLabelconet" width="10%"> File </th>
+                </tr>
+
+                                    <tr align="center">
+                        <td colspan="5" align="center" class="dvtCellContent" > No Notice Found </td>                   
+                    </tr>
+                            </table>
+        </div>								
+                                    
+                                                    
+        
+
+         <div class="table-responsive">
+            <table width="100%" class="table table-bordered table-striped">
+                <tr align="center">
+                    <th class="detailedViewHeaderContent" colspan="8"> Leave Application (2017) </th>
+                </tr>
+                <tr align="center">
+                    <th align="left" class="cellLabelconet" width="10%">Leave Type </th>
+                    <th align="left" class="cellLabelconet" width="10%">Leave Start  </th>
+                    <th align="left" class="cellLabelconet" width="10%">Leave End </th>
+                    <th align="left" class="cellLabelconet" width="10%">No of Days </th>
+                    <th align="left" class="cellLabelconet" width="10%">Join Date </th>
+                    <th align="left" class="cellLabelconet" width="10%">Leave State</th>              
+                </tr>
+                                    <tr align="center">
+                        <td align="center" class="dvtCellContent" colspan="6" >No application In this Year </td>             
+                    </tr>
+                            </table>
+            </div>
+      
+
+         <!--<div class="table-responsive">
+            <table width="100%" class="table table-bordered table-striped">
+                <tr align="center">
+                    <th class="detailedViewHeaderContent" colspan="8"> Replacement Application (2017) </th>
+                </tr>
+                <tr align="center">
+                    <th align="left" class="cellLabelconet" width="10%">Want Holiday </th>
+                    <th align="left" class="cellLabelconet" width="10%">Want to work  </th>
+                    <th align="left" class="cellLabelconet" width="10%">Leave State</th>              
+                </tr>
+                                        <tr align="center">
+                            <td align="left" class="dvtCellContent" >  </td>
+                            <td align="left" class="dvtCellContent" >  </td>
+                            <td align="left" class="dvtCellContent" >
+                                Processing 
+                            </td>
+                        </tr>
+                                            <tr align="center">
+                        <td align="center" class="dvtCellContent" colspan="3" >No application In this Year </td>             
+                    </tr>
+                            </table>
+            </div>-->
+     
+        
+
+         <div class="table-responsive">
+            <table width="100%" class="table table-bordered table-striped">
+                <tr align="center">
+                    <th class="detailedViewHeaderContent" colspan="3"> Yearly Leave Remaining (2017) </th>
+                </tr>
+                <tr>
+
+                <tr>
+                    <td class="cellLabelconet" width="33%" ><b> Leave Type</b></td>
+                    <td class="cellLabelconet" width="33%" ><b> Total Days </b></td>
+                    <td class="cellLabelconet" width="33%" ><b> Details</b></td>
+                </tr> 
+				    <tr>
+                    <td class="cellLabelconet" width="33%" >Forward Earn Leave</td>
+                    <td class="cellLabelconet" width="33%" >7.5</td>
+                    <td class="cellLabelconet" width="33%" ></td>
+                </tr>
+
+                
+                    	
+                        <tr style="height: 25px;"  >
+                            <td class="dvtCellContent"  >Earn leave &nbsp;</td>
+                            <td class="dvtCellContent"  >12 &nbsp;</td>
+                            <td class="dvtCellContent"  > &nbsp;</td>
+                        </tr>
+                        	
+                        <tr style="height: 25px;"  >
+                            <td class="dvtCellContent"  >Medical leave  &nbsp;</td>
+                            <td class="dvtCellContent"  >9 &nbsp;</td>
+                            <td class="dvtCellContent"  > &nbsp;</td>
+                        </tr>
+                          
+
+
+                            </table>
+            </div>
+
+        
+        
+         
+
+
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+       
+</div>
+
+    </div>
+</div>
+			<div class="footer">
+				<div class="footer-inner">
+					<div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">HRM Ipvision</span>
+							Application &copy; 2015
+						</span>
+
+						&nbsp; &nbsp;
+						
+					</div>
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+
+		<!--[if IE]>
+<script src="assets/js/jquery.1.11.1.min.js"></script>
+<![endif]-->
+
+
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+		<script src="http://software.ipvision.ca/assets/js/bootstrap.min.js"></script>
+
+
+
+
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+
+		<!-- ace scripts -->
+		<script src="http://software.ipvision.ca/assets/js/ace-elements.min.js"></script>
+		<script src="http://software.ipvision.ca/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+
+	</body>
+</html>
+ 
+            

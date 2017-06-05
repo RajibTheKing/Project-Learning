@@ -1,0 +1,27 @@
+Followings are "CURL" supported data transfering protocols.
+----------------------------------------------------------------------
+
+01. DICT
+02. FILE
+03. FTP
+04. FTPS
+05. GOPHER
+06. HTTP
+07. HTTPS
+08. IMAP
+09. IMAPS
+10. LDAP
+11. LDAPS
+12. POP3
+13. POP3S
+14. RTMP
+15. RTSP
+16. SCP
+17. SFTP
+18. SMB
+19. SMBS
+20. SMTP
+21. SMTPS
+22. TELNET
+23. TFTP
+
