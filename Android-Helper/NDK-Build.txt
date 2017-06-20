@@ -1,1 +1,2 @@
 /home/rajib/Android/NDK-Manual/android-ndk-r14b/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
+/home/rajib/Android/NDK-Manual/android-ndk-r10e/ndk-build NDK_PROJECT_PATH=./ NDK_APPLICATION_MK=./Application.mk APP_BUILD_SCRIPT=./Android.mk
